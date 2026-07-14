@@ -37,23 +37,41 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-example
-
 # generated native folders
 /ios
 /android
 
-# Auto-generated agent rules (personalized per developer)
-.brainsync/agent-rules.md
+# ── AI Agent & Editor Configs (never commit these) ────────────────────────────
 
-# Auto-generated AI agent exclusions
-.cursorrules
-.clineRules
+# Antigravity / Gemini agent
+.agents/
 .agent/
-.windsurfrules
-.gemini/
-.cline/
-
-AGENT.md
-CLAUDE.md
 .agent-mem/
+.brainsync/
+.gemini/
+
+# Cursor IDE
+.cursor/
+.cursorrules
+
+# Windsurf
+.windsurfrules
+
+# Cline
+.cline/
+.clineRules
+
+# Claude
+CLAUDE.md
+
+# MCP config (local tool config, not project config)
+.mcp.json
+.mcp.json.bak
+
+# VS Code workspace settings (personal, not project)
+.vscode/
+
+# Agent-generated docs (not source code)
+AGENT.md
+AGENTS.md
+PLAN.md
