@@ -43,6 +43,31 @@ function withWorkManagerDependency(config) {
   });
 }
 
+// react-native-tdlib is not picked up by Expo auto-linking, so we manually
+// register it as a Gradle subproject in settings.gradle. Without this the
+// `project(':react-native-tdlib')` dependency reference in app/build.gradle
+// fails with "project could not be found".
+function withTdLibProject(config) {
+  return withDangerousMod(config, [
+    'android',
+    (config) => {
+      const projectRoot = config.modRequest.platformProjectRoot;
+      const settingsGradle = path.join(projectRoot, 'settings.gradle');
+
+      if (!fs.existsSync(settingsGradle)) return config;
+
+      let content = fs.readFileSync(settingsGradle, 'utf-8');
+      if (!content.includes('react-native-tdlib')) {
+        content += `\ninclude ':react-native-tdlib'\nproject(':react-native-tdlib').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-tdlib/android')\n`;
+        fs.writeFileSync(settingsGradle, content);
+      }
+
+      return config;
+    },
+  ]);
+}
+
+
 function withNativeModule(config) {
   return withDangerousMod(config, [
     'android',
@@ -186,6 +211,7 @@ function withProguardRules(config) {
 
 function withTeleDrive(config) {
   config = withPermissions(config);
+  config = withTdLibProject(config);
   config = withWorkManagerDependency(config);
   config = withNativeModule(config);
   config = withPackageRegistration(config);
