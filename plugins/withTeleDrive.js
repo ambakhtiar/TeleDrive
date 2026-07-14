@@ -37,7 +37,8 @@ function withWorkManagerDependency(config) {
       `dependencies {
     implementation("androidx.work:work-runtime-ktx:2.10.1")
     implementation("androidx.security:security-crypto:1.1.0")
-    implementation(project(':react-native-tdlib'))`
+    implementation(project(':react-native-tdlib'))
+    implementation("com.google.code.gson:gson:2.10.1")`
     );
     return config;
   });

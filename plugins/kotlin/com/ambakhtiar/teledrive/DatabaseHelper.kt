@@ -20,7 +20,7 @@ object DatabaseHelper {
                 dbFile.parentFile?.mkdirs()
                 db = SQLiteDatabase.openDatabase(
                     dbFile.absolutePath, null,
-                    SQLiteDatabase.OPEN_READWRITE or SQLiteDatabase.CREATE_IF_NOT_EXISTS,
+                    SQLiteDatabase.OPEN_READWRITE or SQLiteDatabase.CREATE_IF_NECESSARY,
                 )
                 // Match expo-sqlite's WAL mode and wait on locks instead of
                 // failing immediately with SQLITE_BUSY.

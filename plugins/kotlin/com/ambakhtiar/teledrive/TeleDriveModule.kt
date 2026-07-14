@@ -52,9 +52,7 @@ class TeleDriveModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
         fun getLiveTdLibClient(): Client? {
             val ctx = sharedReactContext ?: return null
             return try {
-                val tdlib = ctx.getNativeModule(
-                    Class.forName("com.reactnativetdlib.tdlibclient.TdLibModule")
-                ) ?: return null
+                val tdlib = ctx.getNativeModule("TdLibModule") ?: return null
                 val clientField = tdlib.javaClass.getDeclaredField("client")
                 clientField.isAccessible = true
                 clientField.get(tdlib) as? Client
@@ -213,9 +211,7 @@ class TeleDriveModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
 
     private fun getTdLibClient(): Client? {
         return try {
-            val tdlib = reactApplicationContext.getNativeModule(
-                Class.forName("com.reactnativetdlib.tdlibclient.TdLibModule")
-            ) ?: return null
+            val tdlib = reactApplicationContext.getNativeModule("TdLibModule") ?: return null
             val clientField = tdlib.javaClass.getDeclaredField("client")
             clientField.isAccessible = true
             clientField.get(tdlib) as? Client

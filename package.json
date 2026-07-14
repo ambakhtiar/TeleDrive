@@ -46,5 +46,14 @@
     "typecheck": "tsc --noEmit",
     "eas-build-pre-install": "npm config set ignore-scripts true"
   },
-  "private": true
+  "private": true,
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": [
+          "react-native-tdlib"
+        ]
+      }
+    }
+  }
 }

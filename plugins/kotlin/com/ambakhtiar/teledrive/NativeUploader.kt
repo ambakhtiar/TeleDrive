@@ -52,9 +52,7 @@ class NativeUploader(private val reactContext: ReactApplicationContext) {
 
     private fun getClient(): Client? {
         try {
-            val tdlib = reactContext.getNativeModule(
-                Class.forName("com.reactnativetdlib.tdlibclient.TdLibModule")
-            ) ?: return null
+            val tdlib = reactContext.getNativeModule("TdLibModule") ?: return null
             if (clientField == null) {
                 val f = tdlib.javaClass.getDeclaredField("client")
                 f.isAccessible = true
