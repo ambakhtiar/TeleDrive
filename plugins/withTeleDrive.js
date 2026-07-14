@@ -120,7 +120,7 @@ function withPackageRegistration(config) {
         const idx = content.indexOf(marker);
         if (idx >= 0) {
           const insertAt = idx + marker.length;
-          content = content.slice(0, insertAt) + '\n          add(TeleDrivePackage())\n        ' + content.slice(insertAt);
+          content = content.slice(0, insertAt) + '\n          add(TeleDrivePackage())\n          add(com.reactnativetdlib.tdlibclient.TdLibPackage())\n        ' + content.slice(insertAt);
           fs.writeFileSync(mainApp, content);
         }
       }
